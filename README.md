@@ -26,16 +26,3 @@ o programa pergunta se deseja rodar novamente ou voltar ao menu principal.
 └── funcional/
     └── notas.py                     # Paradigma funcional
 ```
-
-## Requisitos
-
-- Python 3.10 ou superior (necessário para match/case)
-
-## Integrantes
-
-| Nome | RA |
-|------|----|
-|      |    |
-|      |    |
-|      |    |
-|      |    |
