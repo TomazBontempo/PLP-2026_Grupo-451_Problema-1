@@ -25,7 +25,14 @@ def ler_alunos():
     No paradigma estruturado, usamos dicionários simples no lugar de objetos
     para armazenar dados relacionados.
     """
-    pass
+    alunos = []
+    n = int(input("Quantos alunos deseja cadastrar? "))
+    for _ in range(n):
+        nome = input("Nome do aluno: ").strip()
+        notas_str = input(f"Notas de {nome} (separadas por espaco): ").split()
+        notas = [float(nota) for nota in notas_str]
+        alunos.append({"nome": nome, "notas": notas})
+    return alunos
 
 
 def calcular_media(notas):
