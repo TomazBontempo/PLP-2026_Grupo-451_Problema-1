@@ -113,8 +113,14 @@ def main():
     # Ao fim de cada execução, pergunta se o usuário quer rodar novamente.
     # Se não, retorna ao menu principal (encerra essa função).
     while True:
+        alunos = []
+        n = int(input("Quantos alunos deseja cadastrar? "))
+        for _ in range(n):
+            nome = input("Nome do aluno: ").strip()
+            notas_str = input(f"Notas de {nome} (separadas por espaco): ").split()
+            notas = [float(nota) for nota in notas_str]
+            alunos.append({"nome": nome, "notas": notas})
 
-        # TODO: ler dados dos alunos via input
         # TODO: chamar processar_alunos()
         # TODO: chamar ordenar_por_media() e exibir resultado
         # TODO: chamar media_geral(), maior_nota(), menor_nota() e exibir

@@ -19,10 +19,13 @@ def main():
         # 'turma' é um objeto: uma instância concreta da classe Turma.
         turma = Turma()
 
-        # TODO: ler dados dos alunos via input e adicionar à turma
-        # Exemplo do que será feito aqui:
-        #   aluno = Aluno(nome, notas)  <- instancia um objeto Aluno
-        #   turma.adicionar_aluno(aluno) <- chama método da Turma
+        n = int(input("Quantos alunos deseja cadastrar? "))
+        for _ in range(n):
+            nome = input("Nome do aluno: ").strip()
+            notas_str = input(f"Notas de {nome} (separadas por espaco): ").split()
+            notas = [float(nota) for nota in notas_str]
+            aluno = Aluno(nome, notas)
+            turma.adicionar_aluno(aluno)
 
         # TODO: exibir lista ordenada usando turma.listar_ordenado()
 

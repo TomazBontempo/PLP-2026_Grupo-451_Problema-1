@@ -77,8 +77,9 @@ class Turma:
         Devemos verificar se o argumento recebido é realmente uma instância
         de Aluno. Caso contrário, lançamos um TypeError com mensagem clara.
         """
-        # TODO: validar o tipo do argumento antes de adicionar
-        pass
+        if not isinstance(aluno, Aluno):
+            raise TypeError(f"Esperado um objeto Aluno, mas recebeu {type(aluno).__name__}.")
+        self.__alunos.append(aluno)
 
     def media_geral(self):
         """Calcula a média geral de todos os alunos da turma."""
