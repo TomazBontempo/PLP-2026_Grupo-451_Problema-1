@@ -43,7 +43,9 @@ def calcular_media(notas):
     Esta função é um exemplo de modularização: ela faz uma única coisa
     e pode ser reutilizada em qualquer parte do programa.
     """
-    pass
+    if not notas:
+        return 0.0
+    return sum(notas) / len(notas)
 
 
 def determinar_situacao(media):
@@ -54,7 +56,8 @@ def determinar_situacao(media):
     Separar essa regra em uma função própria facilita a manutenção:
     se o critério de aprovação mudar, alteramos só aqui.
     """
-    pass
+    return "Aprovado" if media >= 6.0 else "Reprovado"
+    
 
 
 def calcular_estatisticas(alunos):

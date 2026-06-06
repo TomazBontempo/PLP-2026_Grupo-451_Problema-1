@@ -43,7 +43,9 @@ def media_recursiva(notas, acumulado=0, indice=0):
     """
     # TODO: implementar o caso base (indice == len(notas))
     # TODO: implementar o caso recursivo
-    pass
+    if indice == len(notas):
+        return acumulado / len(notas) if notas else 0.0
+    return media_recursiva(notas, acumulado + notas[indice], indice + 1)
 
 
 # MAP:
@@ -58,7 +60,10 @@ def processar_alunos(alunos):
     Usa map para transformar cada aluno sem modificar a lista original.
     """
     # TODO: usar map com lambda para calcular média e situação de cada aluno
-    pass
+    return list(map(
+        lambda a: {**a, "media": media_recursiva(a["notas"]), "situacao": situacao(media_recursiva(a["notas"]))},
+        alunos
+    ))
 
 
 # FILTER:
