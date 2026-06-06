@@ -41,15 +41,15 @@ class Aluno(Pessoa):
         """
         try:
             # TODO: implementar o cálculo da média
-            pass
+            return sum(self.__notas) / len(self.__notas)
         except ZeroDivisionError:
             # TODO: tratar o caso de lista de notas vazia
-            pass
+            return 0.0
 
     def situacao(self):
         """Retorna 'Aprovado' ou 'Reprovado' com base na média."""
         # TODO: implementar usando self.calcular_media()
-        pass
+        return "Aprovado" if self.calcular_media() >= 6.0 else "Reprovado"
 
     # POLIMORFISMO:
     # Aluno sobrescreve o __str__ que foi definido em Pessoa.
@@ -58,7 +58,7 @@ class Aluno(Pessoa):
     # diferente dependendo de qual classe o objeto pertence.
     def __str__(self):
         # TODO: retornar uma string com nome, média e situação do aluno
-        pass
+        return f"{self.nome} | Média: {self.calcular_media():.2f} | {self.situacao()}"
 
 
 # Turma é uma classe independente que AGREGA objetos do tipo Aluno.
