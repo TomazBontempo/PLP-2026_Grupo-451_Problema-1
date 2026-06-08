@@ -41,8 +41,6 @@ def media_recursiva(notas, acumulado=0, indice=0):
     dividido pelo total de notas.
     Caso recursivo: soma a nota atual ao acumulado e avança o índice.
     """
-    # TODO: implementar o caso base (indice == len(notas))
-    # TODO: implementar o caso recursivo
     if indice == len(notas):
         return acumulado / len(notas) if notas else 0.0
     return media_recursiva(notas, acumulado + notas[indice], indice + 1)
@@ -76,13 +74,11 @@ def processar_alunos(alunos):
 # a função retorna True.
 def filtrar_aprovados(alunos_processados):
     """Usa filter para retornar somente os alunos aprovados."""
-    # TODO: usar filter com lambda aprovado
     return list(filter(lambda a: aprovado(a["media"]), alunos_processados))
 
 
 def filtrar_reprovados(alunos_processados):
     """Usa filter para retornar somente os alunos reprovados."""
-    # TODO: usar filter com lambda
     return list(filter(lambda a: not aprovado(a["media"]), alunos_processados))
 
 
@@ -92,7 +88,6 @@ def filtrar_reprovados(alunos_processados):
 # Exemplo: reduce(lambda a, b: a + b, [1,2,3]) -> ((1+2)+3) -> 6
 def media_geral(alunos_processados):
     """Usa reduce para somar todas as médias e calcular a média geral."""
-    # TODO: implementar com reduce
     if not alunos_processados: return 0.0
     soma = reduce(lambda acc, aluno: acc + aluno["media"], alunos_processados, 0.0)
     return soma / len(alunos_processados)
@@ -100,14 +95,12 @@ def media_geral(alunos_processados):
 
 def maior_nota(alunos_processados):
     """Usa reduce para encontrar o aluno com a maior média."""
-    # TODO: implementar com reduce
     if not alunos_processados: return None
     return reduce(lambda a, b: a if a["media"] >= b["media"] else b, alunos_processados)
 
 
 def menor_nota(alunos_processados):
     """Usa reduce para encontrar o aluno com a menor média."""
-    # TODO: implementar com reduce
     if not alunos_processados: return None
     return reduce(lambda a, b: a if a["media"] < b["media"] else b, alunos_processados)
 
@@ -118,7 +111,6 @@ def ordenar_por_media(alunos_processados):
     sorted() não modifica a lista original, retorna uma nova lista ordenada.
     Isso é uma característica funcional: imutabilidade dos dados originais.
     """
-    # TODO: usar sorted() com key=lambda e reverse=True
     return sorted(alunos_processados, key=lambda a: a["media"], reverse=True)
 
 

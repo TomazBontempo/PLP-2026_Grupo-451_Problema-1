@@ -40,15 +40,12 @@ class Aluno(Pessoa):
         de forma controlada, em vez de deixar o programa quebrar.
         """
         try:
-            # TODO: implementar o cálculo da média
             return sum(self.__notas) / len(self.__notas)
         except ZeroDivisionError:
-            # TODO: tratar o caso de lista de notas vazia
             return 0.0
 
     def situacao(self):
         """Retorna 'Aprovado' ou 'Reprovado' com base na média."""
-        # TODO: implementar usando self.calcular_media()
         return "Aprovado" if self.calcular_media() >= 6.0 else "Reprovado"
 
     # POLIMORFISMO:
@@ -57,7 +54,6 @@ class Aluno(Pessoa):
     # Isso é polimorfismo: o mesmo método (__str__) se comporta de forma
     # diferente dependendo de qual classe o objeto pertence.
     def __str__(self):
-        # TODO: retornar uma string com nome, média e situação do aluno
         return f"{self.nome} | Média: {self.calcular_media():.2f} | {self.situacao()}"
 
 
@@ -83,7 +79,6 @@ class Turma:
 
     def media_geral(self):
         """Calcula a média geral de todos os alunos da turma."""
-        # TODO: implementar
         todas_notas = []
         for aluno in self.__alunos:
             todas_notas.extend(aluno.notas)
@@ -91,12 +86,10 @@ class Turma:
 
     def maior_nota(self):
         """Retorna o aluno com a maior média."""
-        # TODO: implementar
         return max(self.__alunos, key= lambda aluno: aluno.calcular_media())
 
     def menor_nota(self):
         """Retorna o aluno com a menor média."""
-        # TODO: implementar
         return min(self.__alunos, key=lambda aluno: aluno.calcular_media())
 
     def listar_ordenado(self):
@@ -104,6 +97,5 @@ class Turma:
         Retorna a lista de alunos ordenada por média de forma decrescente.
         O método sorted() com key= permite ordenar por um atributo específico.
         """
-        # TODO: implementar usando sorted() com key= e lambda ou método
         return sorted(self.__alunos, key=lambda aluno: aluno.calcular_media(), reverse=True)
     

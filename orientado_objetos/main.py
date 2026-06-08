@@ -27,7 +27,6 @@ def main():
             aluno = Aluno(nome, notas)
             turma.adicionar_aluno(aluno)
 
-        # TODO: exibir lista ordenada usando turma.listar_ordenado()
         print("\n" + "="*40)
         print("LISTAGEM ORDENADA DA TURMA (POO)")
         print("="*40)
@@ -35,8 +34,6 @@ def main():
             print(aluno)
         print("="*40)
 
-        # TODO: exibir estatísticas usando turma.media_geral(),
-        #       turma.maior_nota(), turma.menor_nota()
         print("\n" + "="*40)
         print("ESTATISTICAS DA TURMA (POO)")
         print("="*40)

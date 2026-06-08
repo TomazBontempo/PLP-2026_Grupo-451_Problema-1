@@ -32,13 +32,15 @@ class Pessoa:
     # Aqui podemos adicionar validações antes de aceitar o novo valor.
     @nome.setter
     def nome(self, valor):
-        # TODO: validar se o valor é uma string não vazia antes de atribuir
-        pass
+        # Setter implementado para demonstrar encapsulamento: o atributo privado
+        # __nome só pode ser alterado através desta interface controlada,
+        # não diretamente de fora da classe. Não é utilizado pelo sistema.
+        if isinstance(valor, str) and valor.strip():
+            self.__nome = valor
 
     # __str__ é um método especial do Python chamado "dunder method".
     # Ele define o que é retornado quando fazemos print(objeto) ou str(objeto).
     # Isso é um exemplo de POLIMORFISMO: subclasses podem sobrescrever
     # esse método para exibir informações de formas diferentes.
     def __str__(self):
-        # TODO: retornar uma representação legível da pessoa
         return f"Pessoa: {self.__nome}"
