@@ -74,15 +74,15 @@ def calcular_estatisticas(alunos):
     for aluno in alunos:
         todas_notas.extend(aluno["notas"])
     media_geral = calcular_media(todas_notas)
-    maior_nota = max(todas_notas)
-    menor_nota = min(todas_notas)
+    maior_nota = max(alunos, key= lambda a: a['media'])
+    menor_nota = min(alunos, key= lambda a: a['media'])
     
     print("\n" + "="*40)
     print("ESTATISTICAS DA TURMA (ESTRUTURADO)")
     print("="*40)
-    print(f"Média geral: {media_geral:.2f}")
-    print(f"Maior nota:  {maior_nota:.2f}")
-    print(f"Menor nota:  {menor_nota:.2f}")
+    print(f"Média geral: {media_geral}")
+    print(f"Maior média: {maior_nota['media']:.2f}")
+    print(f"Menor média: {menor_nota['media']:.2f}")
     print("="*40)
 
 
