@@ -84,17 +84,20 @@ class Turma:
     def media_geral(self):
         """Calcula a média geral de todos os alunos da turma."""
         # TODO: implementar
-        pass
+        todas_notas = []
+        for aluno in self.__alunos:
+            todas_notas.extend(aluno.notas)
+        return sum(todas_notas) / len(todas_notas) 
 
     def maior_nota(self):
         """Retorna o aluno com a maior média."""
         # TODO: implementar
-        pass
+        return max(self.__alunos, key= lambda aluno: aluno.calcular_media())
 
     def menor_nota(self):
         """Retorna o aluno com a menor média."""
         # TODO: implementar
-        pass
+        return min(self.__alunos, key=lambda aluno: aluno.calcular_media())
 
     def listar_ordenado(self):
         """

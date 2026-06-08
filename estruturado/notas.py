@@ -70,7 +70,20 @@ def calcular_estatisticas(alunos):
         - menor nota
     Retorna os três valores.
     """
-    pass
+    todas_notas = []
+    for aluno in alunos:
+        todas_notas.extend(aluno["notas"])
+    media_geral = calcular_media(todas_notas)
+    maior_nota = max(todas_notas)
+    menor_nota = min(todas_notas)
+    
+    print("\n" + "="*40)
+    print("ESTATISTICAS DA TURMA (ESTRUTURADO)")
+    print("="*40)
+    print(f"Média geral: {media_geral:.2f}")
+    print(f"Maior nota:  {maior_nota:.2f}")
+    print(f"Menor nota:  {menor_nota:.2f}")
+    print("="*40)
 
 
 def exibir_lista_ordenada(alunos):

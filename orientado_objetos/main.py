@@ -28,9 +28,22 @@ def main():
             turma.adicionar_aluno(aluno)
 
         # TODO: exibir lista ordenada usando turma.listar_ordenado()
+        print("\n" + "="*40)
+        print("LISTAGEM ORDENADA DA TURMA (POO)")
+        print("="*40)
+        for aluno in turma.listar_ordenado():
+            print(aluno)
+        print("="*40)
 
         # TODO: exibir estatísticas usando turma.media_geral(),
         #       turma.maior_nota(), turma.menor_nota()
+        print("\n" + "="*40)
+        print("ESTATISTICAS DA TURMA (POO)")
+        print("="*40)
+        print(f"Média geral: {turma.media_geral():.2f}")
+        print(f"Maior nota:  {turma.maior_nota()}")
+        print(f"Menor nota:  {turma.menor_nota()}")
+        print("="*40)
 
         resposta = input("\nDeseja executar novamente? [s/n]: ").strip().lower()
         if resposta != "s":
