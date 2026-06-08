@@ -119,19 +119,19 @@ def exibir_lista_ordenada(alunos_ordenados):
     Função dedicada apenas à exibição (I/O).
     Usa map para formatar as strings de saída.
     """
-    print("\n" + "="*50)
+    print("\n" + "="*40)
     print("LISTAGEM ORDENADA DA TURMA (FUNCIONAL)")
-    print("="*50)
+    print("="*40)
     
     # Usa map para criar uma lista de strings formatadas
     strings_formatadas = list(map(
-        lambda a: f"Nome: {a['nome']:<15} | Média: {a['media']:>5.2f} | Situação: {a['situacao']}", 
+        lambda a: f"{a['nome']} | Média: {a['media']:.2f} | {a['situacao']}",
         alunos_ordenados
     ))
     
     # Imprime tudo juntando as strings (sem loop for)
     print("\n".join(strings_formatadas))
-    print("="*50)
+    print("="*40)
 
 
 def main():
@@ -167,12 +167,13 @@ def main():
             aprovados = filtrar_aprovados(alunos_processados)
             reprovados = filtrar_reprovados(alunos_processados)
 
-            print(f"\nESTATÍSTICAS DA TURMA:")
-            print(f"Média Geral da Turma: {m_geral:.2f}")
-            print(f"Maior Média: {melhor['nome']} ({melhor['media']:.2f})")
-            print(f"Menor Média: {pior['nome']} ({pior['media']:.2f})")
-            print(f"Total de Aprovados: {len(aprovados)}")
-            print(f"Total de Reprovados: {len(reprovados)}")
+            print("\n" + "="*40)
+            print("ESTATISTICAS DA TURMA (FUNCIONAL)")
+            print("="*40)
+            print(f"Média geral: {m_geral:.2f}")
+            print(f"Maior média: {melhor['nome']} ({melhor['media']:.2f})")
+            print(f"Menor média: {pior['nome']} ({pior['media']:.2f})")
+            print("="*40)
 
         resposta = input("\nDeseja executar novamente? [s/n]: ").strip().lower()
         if resposta != "s":

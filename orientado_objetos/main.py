@@ -37,9 +37,11 @@ def main():
         print("\n" + "="*40)
         print("ESTATISTICAS DA TURMA (POO)")
         print("="*40)
+        maior = turma.maior_nota()
+        menor = turma.menor_nota()
         print(f"Média geral: {turma.media_geral():.2f}")
-        print(f"Maior nota:  {turma.maior_nota()}")
-        print(f"Menor nota:  {turma.menor_nota()}")
+        print(f"Maior média: {maior.nome} ({maior.calcular_media():.2f})")
+        print(f"Menor média: {menor.nome} ({menor.calcular_media():.2f})")
         print("="*40)
 
         resposta = input("\nDeseja executar novamente? [s/n]: ").strip().lower()

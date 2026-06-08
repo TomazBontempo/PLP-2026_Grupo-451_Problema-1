@@ -80,9 +80,9 @@ def calcular_estatisticas(alunos):
     print("\n" + "="*40)
     print("ESTATISTICAS DA TURMA (ESTRUTURADO)")
     print("="*40)
-    print(f"Média geral: {media_geral}")
-    print(f"Maior média: {maior_nota['media']:.2f}")
-    print(f"Menor média: {menor_nota['media']:.2f}")
+    print(f"Média geral: {media_geral:.2f}")
+    print(f"Maior média: {maior_nota['nome']} ({maior_nota['media']:.2f})")
+    print(f"Menor média: {menor_nota['nome']} ({menor_nota['media']:.2f})")
     print("="*40)
 
 
@@ -102,7 +102,7 @@ def exibir_lista_ordenada(alunos):
     print("="*40)
     
     for aluno in alunos_ordenados:
-        print(f"Nome: {aluno['nome']:<15} | Média: {aluno['media']:5.2f} | Situação: {aluno['situacao']}")
+        print(f"{aluno['nome']} | Média: {aluno['media']:.2f} | {aluno['situacao']}")
         
     print("="*40)
 

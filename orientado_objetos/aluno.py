@@ -79,10 +79,8 @@ class Turma:
 
     def media_geral(self):
         """Calcula a média geral de todos os alunos da turma."""
-        todas_notas = []
-        for aluno in self.__alunos:
-            todas_notas.extend(aluno.notas)
-        return sum(todas_notas) / len(todas_notas) 
+        medias = [aluno.calcular_media() for aluno in self.__alunos]
+        return sum(medias) / len(medias)
 
     def maior_nota(self):
         """Retorna o aluno com a maior média."""
