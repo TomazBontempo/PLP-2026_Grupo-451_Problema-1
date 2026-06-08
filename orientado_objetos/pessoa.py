@@ -41,4 +41,4 @@ class Pessoa:
     # esse método para exibir informações de formas diferentes.
     def __str__(self):
         # TODO: retornar uma representação legível da pessoa
-        pass
+        return f"Pessoa: {self.__nome}"

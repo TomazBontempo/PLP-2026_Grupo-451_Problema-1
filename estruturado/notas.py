@@ -26,6 +26,7 @@ def ler_alunos():
     para armazenar dados relacionados.
     """
     alunos = []
+    
     n = int(input("Quantos alunos deseja cadastrar? "))
     for _ in range(n):
         nome = input("Nome do aluno: ").strip()
@@ -69,7 +70,20 @@ def calcular_estatisticas(alunos):
         - menor nota
     Retorna os três valores.
     """
-    pass
+    todas_notas = []
+    for aluno in alunos:
+        todas_notas.extend(aluno["notas"])
+    media_geral = calcular_media(todas_notas)
+    maior_nota = max(alunos, key= lambda a: a['media'])
+    menor_nota = min(alunos, key= lambda a: a['media'])
+    
+    print("\n" + "="*40)
+    print("ESTATISTICAS DA TURMA (ESTRUTURADO)")
+    print("="*40)
+    print(f"Média geral: {media_geral}")
+    print(f"Maior média: {maior_nota['media']:.2f}")
+    print(f"Menor média: {menor_nota['media']:.2f}")
+    print("="*40)
 
 
 def exibir_lista_ordenada(alunos):
@@ -81,7 +95,16 @@ def exibir_lista_ordenada(alunos):
     estruturado: o restante do programa não precisa saber como os dados
     são exibidos, só chama essa função.
     """
-    pass
+    alunos_ordenados = sorted(alunos, key=lambda a: a['media'], reverse=True)
+    
+    print("\n" + "="*40)
+    print("LISTAGEM ORDENADA DA TURMA (ESTRUTURADO)")
+    print("="*40)
+    
+    for aluno in alunos_ordenados:
+        print(f"Nome: {aluno['nome']:<15} | Média: {aluno['media']:5.2f} | Situação: {aluno['situacao']}")
+        
+    print("="*40)
 
 
 def main():
@@ -90,6 +113,9 @@ def main():
     # Se não, retorna ao menu principal (encerra essa função).
     while True:
         alunos = ler_alunos()
+        for aluno in alunos:
+            aluno['media'] = calcular_media(aluno['notas'])
+            aluno['situacao'] = determinar_situacao(aluno['media'])
         exibir_lista_ordenada(alunos)
         calcular_estatisticas(alunos)
 
