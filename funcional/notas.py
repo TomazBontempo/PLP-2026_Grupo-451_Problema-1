@@ -59,11 +59,16 @@ def processar_alunos(alunos):
     Retorna nova lista com nome, média e situação de cada aluno.
     Usa map para transformar cada aluno sem modificar a lista original.
     """
-    # TODO: usar map com lambda para calcular média e situação de cada aluno
+   
     return list(map(
-        lambda a: {**a, "media": media_recursiva(a["notas"]), "situacao": situacao(media_recursiva(a["notas"]))},
+        lambda a: {
+            "nome": a["nome"],
+            "media": media_recursiva(a["notas"]),
+            "situacao": situacao(media_recursiva(a["notas"]))
+        }, 
         alunos
-    ))
+    ))    
+
 
 
 # FILTER:
@@ -72,13 +77,13 @@ def processar_alunos(alunos):
 def filtrar_aprovados(alunos_processados):
     """Usa filter para retornar somente os alunos aprovados."""
     # TODO: usar filter com lambda aprovado
-    pass
+    return list(filter(lambda a: aprovado(a["media"]), alunos_processados))
 
 
 def filtrar_reprovados(alunos_processados):
     """Usa filter para retornar somente os alunos reprovados."""
     # TODO: usar filter com lambda
-    pass
+    return list(filter(lambda a: not aprovado(a["media"]), alunos_processados))
 
 
 # REDUCE:
@@ -88,19 +93,23 @@ def filtrar_reprovados(alunos_processados):
 def media_geral(alunos_processados):
     """Usa reduce para somar todas as médias e calcular a média geral."""
     # TODO: implementar com reduce
-    pass
+    if not alunos_processados: return 0.0
+    soma = reduce(lambda acc, aluno: acc + aluno["media"], alunos_processados, 0.0)
+    return soma / len(alunos_processados)
 
 
 def maior_nota(alunos_processados):
     """Usa reduce para encontrar o aluno com a maior média."""
     # TODO: implementar com reduce
-    pass
+    if not alunos_processados: return None
+    return reduce(lambda a, b: a if a["media"] >= b["media"] else b, alunos_processados)
 
 
 def menor_nota(alunos_processados):
     """Usa reduce para encontrar o aluno com a menor média."""
     # TODO: implementar com reduce
-    pass
+    if not alunos_processados: return None
+    return reduce(lambda a, b: a if a["media"] < b["media"] else b, alunos_processados)
 
 
 def ordenar_por_media(alunos_processados):
@@ -110,7 +119,27 @@ def ordenar_por_media(alunos_processados):
     Isso é uma característica funcional: imutabilidade dos dados originais.
     """
     # TODO: usar sorted() com key=lambda e reverse=True
-    pass
+    return sorted(alunos_processados, key=lambda a: a["media"], reverse=True)
+
+
+def exibir_lista_ordenada(alunos_ordenados):
+    """
+    Função dedicada apenas à exibição (I/O).
+    Usa map para formatar as strings de saída.
+    """
+    print("\n" + "="*50)
+    print("LISTAGEM ORDENADA DA TURMA (FUNCIONAL)")
+    print("="*50)
+    
+    # Usa map para criar uma lista de strings formatadas
+    strings_formatadas = list(map(
+        lambda a: f"Nome: {a['nome']:<15} | Média: {a['media']:>5.2f} | Situação: {a['situacao']}", 
+        alunos_ordenados
+    ))
+    
+    # Imprime tudo juntando as strings (sem loop for)
+    print("\n".join(strings_formatadas))
+    print("="*50)
 
 
 def main():
@@ -120,16 +149,42 @@ def main():
     while True:
         alunos = []
         n = int(input("Quantos alunos deseja cadastrar? "))
+        
         for _ in range(n):
             nome = input("Nome do aluno: ").strip()
             notas_str = input(f"Notas de {nome} (separadas por espaco): ").split()
             notas = [float(nota) for nota in notas_str]
             alunos.append({"nome": nome, "notas": notas})
 
-        # TODO: chamar processar_alunos()
-        # TODO: chamar ordenar_por_media() e exibir resultado
-        # TODO: chamar media_geral(), maior_nota(), menor_nota() e exibir
+        if not alunos:
+            print("Nenhum aluno cadastrado.")
+        else:
+            # 1. Processamento puramente funcional (Membro 4)
+            alunos_processados = processar_alunos(alunos)
+            
+            # 2. Ordenação funcional (Membro 4)
+            alunos_ordenados = ordenar_por_media(alunos_processados)
+            
+            # 3. Exibição (Membro 4)
+            exibir_lista_ordenada(alunos_ordenados)
+
+            # 4. Estatísticas usando Reduce e Filter
+            m_geral = media_geral(alunos_processados)
+            melhor = maior_nota(alunos_processados)
+            pior = menor_nota(alunos_processados)
+            aprovados = filtrar_aprovados(alunos_processados)
+            reprovados = filtrar_reprovados(alunos_processados)
+
+            print(f"\nESTATÍSTICAS DA TURMA:")
+            print(f"Média Geral da Turma: {m_geral:.2f}")
+            print(f"Maior Média: {melhor['nome']} ({melhor['media']:.2f})")
+            print(f"Menor Média: {pior['nome']} ({pior['media']:.2f})")
+            print(f"Total de Aprovados: {len(aprovados)}")
+            print(f"Total de Reprovados: {len(reprovados)}")
 
         resposta = input("\nDeseja executar novamente? [s/n]: ").strip().lower()
         if resposta != "s":
             break
+
+if __name__ == "__main__":
+    main()

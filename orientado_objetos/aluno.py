@@ -102,4 +102,5 @@ class Turma:
         O método sorted() com key= permite ordenar por um atributo específico.
         """
         # TODO: implementar usando sorted() com key= e lambda ou método
-        pass
+        return sorted(self.__alunos, key=lambda aluno: aluno.calcular_media(), reverse=True)
+    
