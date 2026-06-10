@@ -22,12 +22,19 @@ class Aluno(Pessoa):
         # pela lógica que já existe em Pessoa, sem duplicar código.
         super().__init__(nome)
 
-        # __notas é privado por encapsulamento, igual ao __nome em Pessoa.
-        self.__notas = notas
+        self.notas = notas
 
     @property
     def notas(self):
         return self.__notas
+
+    @notas.setter
+    def notas(self, valor):
+        if not isinstance(valor, list):
+            raise TypeError("Notas devem ser uma lista.")
+        if any(not isinstance(n, (int, float)) for n in valor):
+            raise TypeError("Todas as notas devem ser números.")
+        self.__notas = valor
 
     def calcular_media(self):
         """

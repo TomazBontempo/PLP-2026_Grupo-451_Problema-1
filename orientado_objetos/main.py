@@ -24,8 +24,11 @@ def main():
             nome = input("Nome do aluno: ").strip()
             notas_str = input(f"Notas de {nome} (separadas por espaco): ").split()
             notas = [float(nota) for nota in notas_str]
-            aluno = Aluno(nome, notas)
-            turma.adicionar_aluno(aluno)
+            try:
+                aluno = Aluno(nome, notas)
+                turma.adicionar_aluno(aluno)
+            except (ValueError, TypeError) as e:
+                print(f"Erro ao cadastrar aluno: {e}")
 
         print("\n" + "="*40)
         print("LISTAGEM ORDENADA DA TURMA (POO)")

@@ -19,8 +19,7 @@ class Pessoa:
     #     pessoa.nome    -> funciona, pois usamos o @property abaixo
 
     def __init__(self, nome):
-        # __nome é privado. Só a própria classe pode acessá-lo diretamente.
-        self.__nome = nome
+        self.nome = nome
 
     # @property transforma o método em um "getter", permitindo ler
     # o atributo privado de fora da classe com a sintaxe: objeto.nome
@@ -32,11 +31,9 @@ class Pessoa:
     # Aqui podemos adicionar validações antes de aceitar o novo valor.
     @nome.setter
     def nome(self, valor):
-        # Setter implementado para demonstrar encapsulamento: o atributo privado
-        # __nome só pode ser alterado através desta interface controlada,
-        # não diretamente de fora da classe. Não é utilizado pelo sistema.
-        if isinstance(valor, str) and valor.strip():
-            self.__nome = valor
+        if not isinstance(valor, str) or not valor.strip():
+            raise ValueError("Nome deve ser uma string não vazia.")
+        self.__nome = valor
 
     # __str__ é um método especial do Python chamado "dunder method".
     # Ele define o que é retornado quando fazemos print(objeto) ou str(objeto).
